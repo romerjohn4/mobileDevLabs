@@ -3,17 +3,18 @@
  * 
  * @format
  */
+
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet } from 'react-native';
-import ToDoList from './ToDoList';  // Import the ToDoList component
-import ToDoForm from './ToDoForm';  // Import the ToDoForm component
+import ToDoForm from './components/ToDoForm';
+import ToDoList from './components/ToDoList';
 
 function App() {
-  const [tasks, setTasks] = useState([
-    { id: 1, text: 'Do laundry', completed: true },
-    { id: 2, text: 'Go to gym', completed: false },
-    { id: 3, text: 'Walk dog', completed: true },
-  ]);
+  const [tasks, setTasks] = useState([]);
+
+  const addTask = (taskText) => {
+    setTasks([...tasks, taskText]);
+  };
 
   return (
     <SafeAreaView>
@@ -21,7 +22,7 @@ function App() {
       <ToDoList tasks={tasks} />
       
       {/* Render ToDoForm */}
-      <ToDoForm />
+      <ToDoForm addTask={addTask} />
     </SafeAreaView>
   );
 }
